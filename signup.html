@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 350px;
+      margin: 40px auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 4px;
+    }
+    h1 {
+      font-weight: 400;
+    }
+    label {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 15px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #f0c14b;
+      border: 1px solid #a88734;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e2b33c;
+    }
+    .small {
+      font-size: 12px;
+      margin-top: 15px;
+    }
+    a {
+      text-decoration: none;
+      color: #0066c0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Create account</h1>
+
+  <label>Email or mobile phone number</label>
+  <input type="text" id="signupIdentifier">
+
+  <label>Password</label>
+  <input type="password" id="signupPassword">
+
+  <label>Re-enter password</label>
+  <input type="password" id="signupConfirmPassword">
+
+  <button onclick="handleSignup()">Create your account</button>
+
+  <p class="small">
+    Already have an account? <a href="signin.html">Sign-In</a>
+  </p>
+</div>
+
+<script>
+  function handleSignup() {
+    const identifier = document.getElementById("signupIdentifier").value;
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("signupConfirmPassword").value;
+
+    if (!identifier || !password || !confirmPassword) {
+      alert("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const user = {
+      emailOrPhone: identifier,
+      password: password
+    };
+
+    // Store user in localStorage (demo only)
+    localStorage.setItem("user", JSON.stringify(user));
+
+    alert("Account created successfully!");
+    window.location.href = "signin.html";
+  }
+</script>
+
+</body>
+</html>

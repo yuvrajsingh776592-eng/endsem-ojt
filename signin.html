@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 350px;
+      margin: 50px auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 4px;
+    }
+    h1 {
+      font-weight: 400;
+    }
+    label {
+      font-size: 13px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 15px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #f0c14b;
+      border: 1px solid #a88734;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e2b33c;
+    }
+    .small {
+      font-size: 12px;
+      margin-top: 15px;
+    }
+    a {
+      text-decoration: none;
+      color: #0066c0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Sign-In</h1>
+
+  <label>Email or mobile phone number</label>
+  <input type="text" id="signinIdentifier">
+
+  <label>Password</label>
+  <input type="password" id="signinPassword">
+
+  <button onclick="handleSignin()">Sign-In</button>
+
+  <p class="small">
+    New user? <a href="signup.html">Create an account</a>
+  </p>
+</div>
+
+<script>
+  function handleSignin() {
+    const identifier = document.getElementById("signinIdentifier").value;
+    const password = document.getElementById("signinPassword").value;
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser) {
+      alert("No account found. Please sign up.");
+      return;
+    }
+
+    if (
+      identifier === storedUser.emailOrPhone &&
+      password === storedUser.password
+    ) {
+      alert("Login successful!");
+      window.location.assign("index.html");
+
+    } else {
+      alert("Invalid credentials");
+    }
+  }
+</script>
+
+</body>
+</html>
